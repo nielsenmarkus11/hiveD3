@@ -5,11 +5,14 @@
 #' @import htmlwidgets
 #'
 #' @export
-hive <- function(message, width = NULL, height = NULL, elementId = NULL) {
+hive <- function(nodes, links, innerRadius=40, outerRadius = 240, width = NULL, height = NULL, elementId = NULL) {
 
   # forward options using x
   x = list(
-    message = message
+    nodes = nodes,
+    links = links,
+    options = list(innerRadius=innerRadius,
+                   outerRadius=outerRadius)
   )
 
   # create widget
