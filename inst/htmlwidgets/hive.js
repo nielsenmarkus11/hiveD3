@@ -22,10 +22,10 @@ HTMLWidgets.widget({
         var links = [];
         prelinks.forEach(function(d){
           var tmp = {};
-          tmp["source"]=nodes[d.source];
-          tmp["target"]=nodes[d.target];
+          tmp.source=nodes[d.source];
+          tmp.target=nodes[d.target];
           links.push(tmp);
-        })
+        });
 
         var innerRadius = options.innerRadius,
             outerRadius = options.outerRadius;
