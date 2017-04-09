@@ -10,3 +10,5 @@ dependencies:
     src: htmlwidgets/lib/hive-0.1
     script:
       - d3.hive.min.js
+    stylesheet:
+      - hive.css
