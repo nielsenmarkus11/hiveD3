@@ -9,7 +9,7 @@
 #' the \code{source} node id and \code{target} node id should be included for each
 #' link.
 #' @param nodes a data frame containing the node id and position. It should
-#' include the id, \code{x}, and position, \code{y}, for each node. The ids should be
+#' include the id, \code{id}, the axis id, \code{x}, and position, \code{y}, for each node. Both ids should be
 #' numbered starting from 0 and the positions between 0 and 1.
 #' @param innerRadius the spacing from the center of the graph to the inner radius of
 #' the hive plot in pixels.
@@ -22,7 +22,7 @@
 #' @examples
 #' \dontrun{
 #'
-#' nodes = data.frame(x=c(0,0,1,1,2,2), y=c(.1,.9,.2,.3,.1,.8))
+#' nodes = data.frame(id=c(0,1,2,3,4,5),x=c(0,0,1,1,2,2), y=c(.1,.9,.2,.3,.1,.8))
 #' links = data.frame(source=c(0,1,2,2,3,4,5),
 #'                    target=c(2,3,4,5,5,0,1))
 #'
@@ -40,6 +40,10 @@
 #'
 #' @export
 hive <- function(nodes, links, innerRadius=40, outerRadius = 240, width = NULL, height = NULL, elementId = NULL) {
+
+  # sort in order of node id
+  nodes <- nodes[order(nodes$id),]
+  nodes$id <- NULL
 
   # forward options using x
   x = list(

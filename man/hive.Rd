@@ -15,7 +15,7 @@ hive(nodes, links, innerRadius = 40, outerRadius = 240, width = NULL,
 }
 \arguments{
 \item{nodes}{a data frame containing the node id and position. It should
-include the id, \code{x}, and position, \code{y}, for each node. The ids should be
+include the id, \code{id}, the axis id, \code{x}, and position, \code{y}, for each node. Both ids should be
 numbered starting from 0 and the positions between 0 and 1.}
 
 \item{links}{a data frame with the link definitions between the nodes. Both
@@ -43,7 +43,7 @@ This package in an implementation of the hive network graph developed by Martin 
 \examples{
 \dontrun{
 
-nodes = data.frame(x=c(0,0,1,1,2,2), y=c(.1,.9,.2,.3,.1,.8))
+nodes = data.frame(id=c(0,1,2,3,4,5),x=c(0,0,1,1,2,2), y=c(.1,.9,.2,.3,.1,.8))
 links = data.frame(source=c(0,1,2,2,3,4,5),
                    target=c(2,3,4,5,5,0,1))
 
