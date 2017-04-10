@@ -10,7 +10,7 @@ This package in an implementation of the hive network graph developed by Martin 
 ## Example
     library(hiveD3)
 
-    nodes = data.frame(id=c(1,0,2,3,4,5),
+    nodes = data.frame(id=c(0,1,2,3,4,5),
                        x=c(0,0,1,1,2,2), 
                        y=c(.1,.9,.2,.3,.1,.8))
     links = data.frame(source=c(0,1,2,2,3,4,5),
