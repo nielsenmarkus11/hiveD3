@@ -2,7 +2,7 @@ Package: hiveD3
 Title: Create a D3 JavaScript hive network plot
 Version: 0.0.0.9000
 Authors@R: person("Mark", "Nielsen", email = "nielsen.markus11@gmail.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: This package in an implementation of the hive network graph developed by Martin Krzysinski (see http://egweb.bcgsc.ca/) and implemented in D3 by Mike Bostock and Rich Morin (see https://bost.ocks.org/mike/hive/ and https://bl.ocks.org/mbostock/2066415).
 Depends: R (>= 3.2.3)
 Imports: htmlwidgets (>= 0.8)
 License: GPL (>= 3)

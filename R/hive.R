@@ -15,6 +15,7 @@
 #' the hive plot in pixels.
 #' @param outerRadius the spacing from the center of the graph to the outer radius of
 #' the hive plot in pixels.
+#' @param opacity the opacity of the links.
 #' @param width numeric width for the network graph's frame area in pixels.
 #' @param height numeric height for the network graph's frame area in pixels.
 #' @param elementId defined the HTML object's id.
@@ -39,7 +40,7 @@
 #' @import htmlwidgets
 #'
 #' @export
-hive <- function(nodes, links, innerRadius=40, outerRadius = 240, width = NULL, height = NULL, elementId = NULL) {
+hive <- function(nodes, links, innerRadius=40, outerRadius = 240, opacity=0.7, width = NULL, height = NULL, elementId = NULL) {
 
   # sort in order of node id
   nodes <- nodes[order(nodes$id),]
@@ -51,7 +52,8 @@ hive <- function(nodes, links, innerRadius=40, outerRadius = 240, width = NULL, 
     links = links,
     numAxis = max(nodes$x)+1,
     options = list(innerRadius=innerRadius,
-                   outerRadius=outerRadius)
+                   outerRadius=outerRadius,
+                   opacity=opacity)
   )
 
   # create widget

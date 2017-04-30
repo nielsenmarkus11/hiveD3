@@ -10,8 +10,8 @@ and \url{https://bost.ocks.org/mike/hive/} respectively. Hive plots were
 developed by Martin Krzywinski, et al. \url{http://egweb.bcgsc.ca/}
 }
 \usage{
-hive(nodes, links, innerRadius = 40, outerRadius = 240, width = NULL,
-  height = NULL, elementId = NULL)
+hive(nodes, links, innerRadius = 40, outerRadius = 240, opacity = 0.7,
+  width = NULL, height = NULL, elementId = NULL)
 }
 \arguments{
 \item{nodes}{a data frame containing the node id and position. It should
@@ -27,6 +27,8 @@ the hive plot in pixels.}
 
 \item{outerRadius}{the spacing from the center of the graph to the outer radius of
 the hive plot in pixels.}
+
+\item{opacity}{the opacity of the links.}
 
 \item{width}{numeric width for the network graph's frame area in pixels.}
 

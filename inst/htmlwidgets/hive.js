@@ -19,6 +19,7 @@ HTMLWidgets.widget({
         var nodes = HTMLWidgets.dataframeToD3(x.nodes);
         var prelinks = HTMLWidgets.dataframeToD3(x.links);
 
+        // create json of link sources and targets
         var links = [];
         prelinks.forEach(function(d){
           var tmp = {};
@@ -26,6 +27,7 @@ HTMLWidgets.widget({
           tmp.target=nodes[d.target];
           links.push(tmp);
         });
+
 
         var innerRadius = options.innerRadius,
             outerRadius = options.outerRadius;
@@ -43,29 +45,63 @@ HTMLWidgets.widget({
 
         svg.selectAll(".axis")
             .data(d3.range(x.numAxis))
-          .enter().append("line")
+            .enter().append("line")
             .attr("class", "axis")
-            .attr("transform", function(d) { return "rotate(" + degrees(angle(d)) + ")"; })
+            .attr("transform", function(d) {
+              return "rotate(" + degrees(angle(d)) + ")";
+            })
             .attr("x1", radius.range()[0])
             .attr("x2", radius.range()[1]);
 
-        svg.selectAll(".link")
+        // draw links
+        var link = svg.selectAll(".link")
             .data(links)
-          .enter().append("path")
+            .enter().append("path")
             .attr("class", "link")
             .attr("d", d3.hive.link()
-            .angle(function(d) { return angle(d.x); })
-            .radius(function(d) { return radius(d.y); }))
-            .style("stroke", function(d) { return color(d.source.x); });
+              .angle(function(d) { return angle(d.x); })
+              .radius(function(d) { return radius(d.y); }))
+            .style("stroke", function(d) { return color(d.source.x); })
+            .style("opacity", options.opacity)
+            .on("mouseover", function(d) {
+              d3.select(this)
+                .style("opacity", 1)
+                .style("stroke", "#ff0000");
+            })
+            .on("mouseout", function(d) {
+              d3.select(this)
+                .style("opacity", options.opacity)
+                .style("stroke", function(d) { return color(d.source.x); });
+            });
 
-        svg.selectAll(".node")
+        // draw nodes
+        var node = svg.selectAll(".node")
             .data(nodes)
-          .enter().append("circle")
+            .enter().append("circle")
             .attr("class", "node")
-            .attr("transform", function(d) { return "rotate(" + degrees(angle(d.x)) + ")"; })
+            .attr("transform", function(d) {
+              return "rotate(" + degrees(angle(d.x)) + ")";
+            })
             .attr("cx", function(d) { return radius(d.y); })
             .attr("r", 5)
-            .style("fill", function(d) { return color(d.x); });
+            .style("fill", function(d) { return color(d.x); })
+            .style("stroke", "#000000")
+            .on("mouseover", function(d) {
+              d3.select(this)
+                .style("stroke", "#ff0000");
+
+              link.style("stroke", function(l) {
+                  return d === l.source || d === l.target ? "#ff0000" : color(l.source.x);
+                });
+            })
+            .on("mouseout", function(d) {
+              d3.select(this)
+                .style("stroke", "#000000");
+
+              link.style("stroke", function(l) {
+                return color(l.source.x);
+                });
+            });
 
         function degrees(radians) {
           return radians / Math.PI * 180 - 90;
