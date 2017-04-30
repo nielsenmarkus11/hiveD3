@@ -43,8 +43,15 @@
 hive <- function(nodes, links, innerRadius=40, outerRadius = 240, opacity=0.7, width = NULL, height = NULL, elementId = NULL) {
 
   # sort in order of node id
-  nodes <- nodes[order(nodes$id),]
-  nodes$id <- NULL
+  if("id" %in% colnames(nodes)) {
+    nodes <- nodes[order(nodes$id),]
+    nodes$id <- NULL
+  }
+
+  # color by axis if no coloring is supplied
+  if(!("color" %in% colnames(nodes))) {
+    nodes$color <- nodes$x
+  }
 
   # forward options using x
   x = list(

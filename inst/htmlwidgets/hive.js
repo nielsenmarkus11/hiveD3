@@ -61,17 +61,20 @@ HTMLWidgets.widget({
             .attr("d", d3.hive.link()
               .angle(function(d) { return angle(d.x); })
               .radius(function(d) { return radius(d.y); }))
-            .style("stroke", function(d) { return color(d.source.x); })
+            .style("stroke", function(d) { return color(d.source.color); })
+            .style("stroke-width", 1.5)
             .style("opacity", options.opacity)
             .on("mouseover", function(d) {
               d3.select(this)
                 .style("opacity", 1)
-                .style("stroke", "#ff0000");
+                .style("stroke", "#ff0000")
+                .style("stroke-width", 2);
             })
             .on("mouseout", function(d) {
               d3.select(this)
                 .style("opacity", options.opacity)
-                .style("stroke", function(d) { return color(d.source.x); });
+                .style("stroke", function(d) { return color(d.source.color); })
+                .style("stroke-width", 1.5);
             });
 
         // draw nodes
@@ -84,14 +87,17 @@ HTMLWidgets.widget({
             })
             .attr("cx", function(d) { return radius(d.y); })
             .attr("r", 5)
-            .style("fill", function(d) { return color(d.x); })
+            .style("fill", function(d) { return color(d.color); })
             .style("stroke", "#000000")
             .on("mouseover", function(d) {
               d3.select(this)
                 .style("stroke", "#ff0000");
 
               link.style("stroke", function(l) {
-                  return d === l.source || d === l.target ? "#ff0000" : color(l.source.x);
+                  return d === l.source || d === l.target ? "#ff0000" : color(l.source.color);
+                })
+                .style("stroke-width", function(l) {
+                  return d === l.source || d === l.target ? 2 : 1.5;
                 });
             })
             .on("mouseout", function(d) {
@@ -99,8 +105,9 @@ HTMLWidgets.widget({
                 .style("stroke", "#000000");
 
               link.style("stroke", function(l) {
-                return color(l.source.x);
-                });
+                return color(l.source.color);
+                })
+                .style("stroke-width", 1.5);
             });
 
         function degrees(radians) {
