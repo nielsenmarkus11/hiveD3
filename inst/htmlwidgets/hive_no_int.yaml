@@ -1,0 +1,14 @@
+# (uncomment to add a dependency)
+dependencies:
+  - name: d3
+    version: 3.0
+    src: htmlwidgets/lib/d3-3.0
+    script:
+      - d3.v3.min.js
+  - name: hive
+    version: 0.1
+    src: htmlwidgets/lib/hive-0.1
+    script:
+      - d3.hive.min.js
+    stylesheet:
+      - hive.css
