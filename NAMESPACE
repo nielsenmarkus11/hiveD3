@@ -3,8 +3,5 @@
 export(hive)
 export(hive_no_int)
 export(hiveOutput)
-export(mywidget)
-export(mywidgetOutput)
 export(renderHive)
-export(renderMywidget)
 import(htmlwidgets)
