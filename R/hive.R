@@ -9,8 +9,8 @@
 #' the \code{source} node id and \code{target} node id should be included for each
 #' link.
 #' @param nodes a data frame containing the node id and position. It should
-#' include the id, \code{id}, the axis id, \code{x}, and position, \code{y}, for each node. Both ids should be
-#' numbered starting from 0 and the positions between 0 and 1.
+#' include the \code{id}, the axis id (\code{x}), and position (\code{y}) for each node. Both the id and axis id should be
+#' numbered starting from 0 and the positions should be between 0 and 1.
 #' @param innerRadius the spacing from the center of the graph to the inner radius of
 #' the hive plot in pixels.
 #' @param outerRadius the spacing from the center of the graph to the outer radius of
